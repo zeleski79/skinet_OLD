@@ -1,3 +1,4 @@
+using Core.Interfaces;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,6 +14,7 @@ builder.Services.AddDbContext<StoreContext>( opt => {
     // Get the connection string from the appsettings.Development.json file
     opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")); 
 });
+builder.Services.AddScoped<IProductRepository, ProductRepository>(); // Addscoped: service will stay during the HTTP request
 
 var app = builder.Build();
 
